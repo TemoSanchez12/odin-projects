@@ -3,10 +3,9 @@ def caesar_cipher(string, key)
 
   string.each_char do |char|
     is_up_case = char == char.upcase
-    fixed_char = char.downcase
-    position = fixed_char.ord + key > 122 ? fixed_char.ord + key - 122 + 96 : fixed_char.ord + key
-
-    result += 97 <= position && position <= 122 ? is_up_case ? position.chr.upcase : position.chr : char
+    fixed_char_key = char.downcase.ord + key
+    position = fixed_char_key > 122 ? fixed_char_key - 26 : fixed_char_key
+    result += position.between?(97, 122) ? is_up_case ? position.chr.upcase : position.chr : char
   end
 
   return result
